@@ -1,0 +1,325 @@
+fileFormatVersion: 2
+guid: cf47cb00f50e63b448407f82ee3f6f2f
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 715df9372183c47e389bb6e19fbc3b52, type: 3}
+  editorImportSettings:
+    generateSecondaryUVSet: 0
+  importSettings:
+    nodeNameMethod: 1
+    animationMethod: 2
+    generateMipMaps: 1
+    texturesReadable: 0
+    defaultMinFilterMode: 9729
+    defaultMagFilterMode: 9729
+    anisotropicFilterLevel: 1
+  instantiationSettings:
+    mask: -1
+    layer: 0
+    skinUpdateWhenOffscreen: 1
+    lightIntensityFactor: 1
+    sceneObjectCreation: 2
+  assetDependencies:
+  - type: 0
+    originalUri: Assets\Models\Elements\Switchs\scene.bin
+    assetPath: Assets\Models\Elements\Switchs\scene.bin
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\frontplate_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\frontplate_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\frontplate_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\frontplate_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\frontplate_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\frontplate_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\etherouter_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\etherouter_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\etherouter_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\etherouter_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\etherouter_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\etherouter_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\plugplastic_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\plugplastic_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\plugplastic_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\plugplastic_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\plugplastic_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\plugplastic_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\plugpins_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\plugpins_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\plugpins_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\plugpins_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\plugpins_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\plugpins_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\logo_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\logo_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\logo_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\logo_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\logo_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\logo_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\logo_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\logo_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\screen_baseColor.png
+    assetPath: Assets\Models\Elements\Switchs\textures\screen_baseColor.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\screen_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\screen_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\screen_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\screen_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\screenback_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\screenback_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port0red_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port0red_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port0red_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port0red_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port0red_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port0red_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port0red_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port0red_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port0green_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port0green_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port0green_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port0green_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port0green_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port0green_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port0green_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port0green_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port1green_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port1green_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port1green_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port1green_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port1green_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port1green_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port1green_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port1green_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port2green_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port2green_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port2green_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port2green_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port2green_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port2green_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port2green_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port2green_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port3green_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port3green_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port3green_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port3green_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port3green_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port3green_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port3green_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port3green_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port5red_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port5red_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port5red_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port5red_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port5red_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port5red_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port5red_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port5red_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port5green_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port5green_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port5green_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port5green_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port5green_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port5green_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port5green_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port5green_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port6green_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port6green_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port6green_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port6green_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port6green_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port6green_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port6green_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port6green_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port7green_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port7green_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port7green_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port7green_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port7green_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port7green_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port7green_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port7green_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port8green_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port8green_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port8green_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port8green_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port8green_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port8green_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port8green_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port8green_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port8red_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port8red_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port8red_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port8red_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port8red_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port8red_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port8red_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port8red_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port7red_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port7red_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port7red_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port7red_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port7red_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port7red_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port7red_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port7red_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port6red_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port6red_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port6red_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port6red_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port6red_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port6red_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port6red_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port6red_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port4red_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port4red_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port4red_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port4red_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port4red_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port4red_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port4red_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port4red_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port3red_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port3red_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port3red_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port3red_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port3red_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port3red_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port3red_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port3red_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port2red_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port2red_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port2red_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port2red_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port2red_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port2red_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port2red_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port2red_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port1red_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port1red_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port1red_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port1red_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port1red_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port1red_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port1red_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port1red_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port4green_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port4green_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port4green_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port4green_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port4green_emissive.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\port4green_emissive.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\port4green_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\port4green_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\ethercopper_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\ethercopper_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\ethercopper_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\ethercopper_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\ethercopper_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\ethercopper_normal.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\case_baseColor.jpeg
+    assetPath: Assets\Models\Elements\Switchs\textures\case_baseColor.jpeg
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\case_metallicRoughness.png
+    assetPath: Assets\Models\Elements\Switchs\textures\case_metallicRoughness.png
+  - type: 1
+    originalUri: Assets\Models\Elements\Switchs\textures\case_normal.png
+    assetPath: Assets\Models\Elements\Switchs\textures\case_normal.png
+  reportItems: []

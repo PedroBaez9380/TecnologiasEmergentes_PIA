@@ -1,0 +1,11 @@
+Model Information:
+* title:	8 Port Ethernet Switch
+* source:	https://sketchfab.com/3d-models/8-port-ethernet-switch-0aa1eb0452d347eeb6b2b310e8d40d05
+* author:	duckSPLASH (https://sketchfab.com/ducksplash)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "8 Port Ethernet Switch" (https://sketchfab.com/3d-models/8-port-ethernet-switch-0aa1eb0452d347eeb6b2b310e8d40d05) by duckSPLASH (https://sketchfab.com/ducksplash) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
