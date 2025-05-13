@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class ClickHandler : MonoBehaviour
 {
-    public UIManager uiManager;          // Asignar en el Inspector (arrastra el UIManager aquí)
-    private DeviceInfo deviceInfo;       // El script con los datos del dispositivo
+    public UIManager uiManager;
+    private DeviceInfo deviceInfo;
 
     void Start()
     {
-        // Obtener el componente DeviceInfo del objeto
         deviceInfo = GetComponent<DeviceInfo>();
     }
 
