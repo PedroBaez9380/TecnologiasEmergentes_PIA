@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Table
   - TableOcuppied
+  - Cable4
+  - PC4
+  - Router4
+  - Server4
+  - Switch4
+  - PCLVL5
   layers:
   - Default
   - TransparentFX

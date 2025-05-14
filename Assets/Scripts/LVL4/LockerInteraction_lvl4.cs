@@ -20,6 +20,10 @@ public class LockerInteraction_lvl4 : MonoBehaviour
     private PlayerController playerScript;
     private Interactor interactor;  // Referencia al interactor
     private GameObject currentDeviceInstance;
+    private int pcCounter = 1;
+    private int routerCounter = 1;
+    private int serverCounter = 1;
+    private int switchCounter = 1;
 
     void Start()
     {
@@ -83,6 +87,19 @@ public class LockerInteraction_lvl4 : MonoBehaviour
             CancelPlacement();
         }
     }
+
+    [System.Serializable]
+    public struct DevicePlacementSettings
+    {
+        public Vector3 positionOffset;
+        public Vector3 rotationOffset;
+    }
+    // Añade esto en LockerInteraction_lvl4.cs
+    [Header("Ajustes de Posición")]
+    public DevicePlacementSettings pcPlacement;
+    public DevicePlacementSettings routerPlacement;
+    public DevicePlacementSettings serverPlacement;
+    public DevicePlacementSettings switchPlacement;
 
     public void InteractWithLocker()
     {
@@ -155,6 +172,7 @@ public class LockerInteraction_lvl4 : MonoBehaviour
         if (currentDevice != null)
         {
             // Muestra el mensaje de colocación
+            // Muestra el mensaje de colocación
             selectedDeviceText.text = "Colocando " + currentDevice.name + "..." + "Presiona Z para cancelar";
             selectedDeviceText.gameObject.SetActive(true);
 
@@ -163,7 +181,7 @@ public class LockerInteraction_lvl4 : MonoBehaviour
             if (interactor != null)
             {
                 interactor.EnableDevicePlacement(this);
-                Debug.Log("Modo de colocación activado para " + currentDevice.name);
+                //Debug.Log("Modo de colocación activado para " + currentDevice.name);
             }
             else
             {
@@ -192,44 +210,101 @@ public class LockerInteraction_lvl4 : MonoBehaviour
 
     public void PlaceDeviceOnTable(Transform selectedTable)
     {
-        // Si se ha seleccionado un dispositivo y la mesa está vacía
         if (currentDevice != null && selectedTable != null)
         {
-            // Accede al script TableProperties y verifica si la mesa está ocupada
             TableProperties tableProperties = selectedTable.GetComponent<TableProperties>();
 
-            if (tableProperties != null)
+            if (tableProperties != null && !tableProperties.IsOccupied())
             {
-                if (tableProperties.IsOccupied()) // Si la mesa ya está ocupada
+                // Instanciar el dispositivo en el mundo (no como hijo de la mesa)
+                currentDeviceInstance = Instantiate(currentDevice);
+
+                // Variables para el collider y el tag
+                Collider deviceCollider = null;
+                string deviceTag = "";
+
+                // Configurar posición/rotación, collider y tag basada en el tipo de dispositivo
+                switch (deviceDropdown.options[deviceDropdown.value].text)
                 {
-                    // Si ya hay un dispositivo en la mesa, mostramos un mensaje
-                    Debug.Log("La mesa ya está ocupada. No puedes colocar otro dispositivo.");
-                    selectedDeviceText.text = "La mesa ya está ocupada. No puedes colocar otro dispositivo.";
-                    selectedDeviceText.gameObject.SetActive(true);
-                    return; // Salimos de la función, no colocamos el nuevo dispositivo
+                    case "PC":
+                        currentDeviceInstance.name = "PC_Clone_" + pcCounter;
+                        pcCounter++;
+                        currentDeviceInstance.transform.position = selectedTable.position + new Vector3(-75f, 5.05f, -138.5f) - new Vector3(-74.28487f, 4.884095f, -138.4746f);
+                        //currentDeviceInstance.transform.rotation = selectedTable.rotation * Quaternion.Euler(0f, -76.079f, 0f);
+                        deviceTag = "PC4";
+                        
+                        break;
+                    case "Router":
+                        currentDeviceInstance.name = "Router_Clone_" + routerCounter;
+                        routerCounter++;
+                        currentDeviceInstance.transform.position = selectedTable.position + selectedTable.TransformDirection(new Vector3(0f, 0.3f, 0f));
+                        //currentDeviceInstance.transform.rotation = selectedTable.rotation;
+                        deviceTag = "Router4";
+                        
+                        break;
+                    case "Servidor":
+                        currentDeviceInstance.name = "Servidor_Clone_" + serverCounter;
+                        serverCounter++;
+                        currentDeviceInstance.transform.position = selectedTable.position + new Vector3(-86.62688f, 7.68f, -156.62f) - new Vector3(-86.62688f, 5.184103f, -156.62f);
+                        //currentDeviceInstance.transform.rotation = selectedTable.rotation * Quaternion.Euler(0f, 123.595f, 0f) * Quaternion.Euler(0f, -33.381f, 0f);
+                        deviceTag = "Server4";
+                        
+                        break;
+                    case "Switch":
+                        currentDeviceInstance.name = "Switch_Clone_" + switchCounter;
+                        switchCounter++;
+                        currentDeviceInstance.transform.position = selectedTable.position + selectedTable.TransformDirection(new Vector3(0f, 0.15f, 0f));
+                        //currentDeviceInstance.transform.rotation = selectedTable.rotation;
+                        deviceTag = "Switch4";
+                        
+                        break;
+                }
+                // Ajustar el collider (opcional, pero recomendado)
+                // Ajustar el collider (opcional, pero recomendado)
+                
+
+                // Forzar la escala y rotación original del prefab
+                currentDeviceInstance.transform.localScale = currentDevice.transform.localScale;
+                currentDeviceInstance.transform.localRotation = currentDevice.transform.localRotation; // Aplicar rotación original
+
+                // Asegurar que el objeto tenga el tag correcto
+                currentDeviceInstance.tag = deviceTag;
+
+                // Ajustar el collider (opcional, pero recomendado)
+                if (deviceCollider != null)
+                {
+                    // Aquí puedes ajustar el tamaño y el centro del collider si es necesario
+                    // Por ejemplo:
+                    // deviceCollider.bounds.size = new Vector3(1f, 1f, 1f); // Ajustar tamaño
+                    // deviceCollider.center = new Vector3(0f, 0f, 0f); // Ajustar centro
                 }
 
-                // Coloca el nuevo dispositivo en la mesa
-                currentDeviceInstance = Instantiate(currentDevice, selectedTable.position, selectedTable.rotation);
-                tableProperties.PlaceDevice(currentDeviceInstance); // Marca la mesa como ocupada
-
-                //selectedTable.tag = "TableOcuppied";  // Cambia el tag de la mesa (si es necesario)
-
-                // Desactiva el texto de selección
+                tableProperties.PlaceDevice(currentDeviceInstance);
                 selectedDeviceText.gameObject.SetActive(false);
-
-                Debug.Log("Dispositivo " + currentDevice.name + " colocado en la mesa.");
-
-                // Limpia la referencia del dispositivo después de usarlo
                 currentDevice = null;
-                interactor.RefreshPrompt();
-            }
-            else
-            {
-                Debug.LogWarning("El script TableProperties no está asignado a la mesa.");
+
+                if (interactor != null)
+                {
+                    interactor.RefreshPrompt();
+                    interactor.DisableDevicePlacement();
+                }
+
+                Debug.Log($"Dispositivo colocado. Escala: {currentDeviceInstance.transform.localScale}, Tag: {currentDeviceInstance.tag}");
             }
         }
-        
+    }
+
+    private DevicePlacementSettings GetPlacementSettings(string deviceName)
+    {
+        Debug.Log(deviceName);
+        switch (deviceName)
+        {
+            case "PC": return pcPlacement;
+            case "Router": return routerPlacement;
+            case "Servidor": return serverPlacement;
+            case "Switch": return switchPlacement;
+            default: return new DevicePlacementSettings();
+        }
     }
 
 
