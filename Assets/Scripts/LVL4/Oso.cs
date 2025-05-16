@@ -49,7 +49,7 @@ public class Oso : MonoBehaviour
                     canInteract = true;
 
                     //  *** Lógica de visualización de texto de la versión anterior ***
-                    if (interactionPromptText != null)
+                    if (interactionPromptText != null && !MenuExplicacion.activeSelf) // Verifica si el menú NO está activo
                     {
                         interactionPromptText.text = "Presiona " + interactionButton + " para Hablar";
                         interactionPromptText.gameObject.SetActive(true);
@@ -84,12 +84,14 @@ public class Oso : MonoBehaviour
     {
         MenuExplicacion.gameObject.SetActive(true);
         LockPlayerControls(true);
+        HideInteractionPrompt(); // Oculta el prompt al abrir el menú
     }
 
     public void CerrarMenu()
     {
         MenuExplicacion.gameObject.SetActive(false);
         LockPlayerControls(false);
+        ShowInteractionPrompt(); // Muestra el prompt al cerrar el menú
     }
 
     private void LockPlayerControls(bool lockControls)
@@ -106,5 +108,22 @@ public class Oso : MonoBehaviour
 
         Cursor.lockState = lockControls ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = lockControls;
+    }
+
+    private void HideInteractionPrompt()
+    {
+        if (interactionPromptText != null)
+        {
+            interactionPromptText.gameObject.SetActive(false);
+        }
+    }
+
+    private void ShowInteractionPrompt()
+    {
+        if (interactionPromptText != null && canInteract)
+        {
+            interactionPromptText.text = "Presiona " + interactionButton + " para Hablar";
+            interactionPromptText.gameObject.SetActive(true);
+        }
     }
 }

@@ -20,6 +20,8 @@ public class Interactor : MonoBehaviour
     public TextMeshProUGUI interactionPromtptLocker;
     public TMP_Text selectedDeviceText;
 
+    public GameObject CableLVL5;
+
 
     private GameObject currentHitObject;
     private LockerInteraction_lvl4 lockerInteraction;
@@ -146,9 +148,10 @@ public class Interactor : MonoBehaviour
                 }
             }
 
+            //LVL4
             else if (hitObject.CompareTag("PC4") || hitObject.CompareTag("Router4") || hitObject.CompareTag("Switch4") || hitObject.CompareTag("Server4"))
             {
-                Debug.Log("Si entra al bloque");
+                
                 interactionPromptText.text = "Presiona E para conectar cable";
                 interactionPromptText.gameObject.SetActive(true);
 
@@ -222,7 +225,56 @@ public class Interactor : MonoBehaviour
                     ipAsignationLVL5.InteractWithIPAssignable();
                 }
             }
-            
+            else if (hitObject.CompareTag("SWITCHLVL5"))
+            {
+
+                
+                interactionPromptText.text = "Presiona E para conectar cable";
+                interactionPromptText.gameObject.SetActive(true);
+
+                // Lógica para Conectar Cables (Código Existente)
+                if (selectedDevice == null)
+                {
+                    // Seleccionar el primer dispositivo
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        selectedDevice = hitObject;
+                        selectedDeviceText.text = "Selecciona otro dispositivo para conectar. Para cancelar, presiona Z mientras miras al dispositivo";
+                        selectedDeviceText.gameObject.SetActive(true);
+                        interactionPromptText.gameObject.SetActive(false);
+                    }
+                }
+                else if (selectedDevice != hitObject)
+                {
+                    // Seleccionar el segundo dispositivo
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        targetDevice = hitObject;
+                        if (CanConnect(selectedDevice, targetDevice))
+                        {
+                            EnableCable();
+
+                            // Limpiar la selección
+                            selectedDevice = null;
+                            targetDevice = null;
+                            interactionPromptText.gameObject.SetActive(false);
+                            selectedDeviceText.gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            interactionPromptText.text = "No se pueden conectar.";
+                            interactionPromptText.gameObject.SetActive(true);
+                        }
+                    }
+                }
+                else if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    selectedDevice = null;
+                    selectedDeviceText.gameObject.SetActive(false);
+                    interactionPromptText.gameObject.SetActive(false); // Opcional: Ocultar el texto principal también
+                }
+            }
+
             else
             {
 
@@ -278,7 +330,7 @@ public class Interactor : MonoBehaviour
     {
         // Lógica para checar si se pueden conectar los dispositivos
         // Por ejemplo:
-        if (device1.CompareTag("PC") && device2.CompareTag("PC"))
+        if (device1.CompareTag("PC4") && device2.CompareTag("PC4"))
         {
             return false; // No permitir PC a PC
         }
@@ -378,6 +430,12 @@ public class Interactor : MonoBehaviour
         {
             interactionPromptText.gameObject.SetActive(false);
         }
+    }
+
+    
+    public void EnableCable()
+    {
+        CableLVL5.SetActive(true);
     }
 
 

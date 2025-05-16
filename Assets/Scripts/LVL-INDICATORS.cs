@@ -25,6 +25,9 @@ public class TriggerMessage : MonoBehaviour
     [Tooltip("Indica si el otro collider debe ser un trigger (true) o no (false).")]
     public bool setTargetColliderToTrigger = true;
 
+    [Header("Objeto a Desactivar")]
+    public GameObject objectToDeactivate;
+
 
     void Start()
     {
@@ -44,6 +47,11 @@ public class TriggerMessage : MonoBehaviour
             if (targetCollider != null)
             {
                 targetCollider.isTrigger = setTargetColliderToTrigger;
+            }
+
+            if (objectToDeactivate != null)
+            {
+                objectToDeactivate.SetActive(false);
             }
         }
     }

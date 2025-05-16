@@ -12,6 +12,7 @@ TagManager:
   - Server4
   - Switch4
   - PCLVL5
+  - SWITCHLVL5
   layers:
   - Default
   - TransparentFX

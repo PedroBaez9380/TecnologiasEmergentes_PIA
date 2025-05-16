@@ -8,6 +8,10 @@ public class ButtonProperties : MonoBehaviour
     [Tooltip("Arrastra aquí el objeto cuyo Box Collider quieres cambiar a Trigger.")]
     public BoxCollider objectToModifyCollider; // Referencia al collider del OTRO objeto
 
+    [Header("Objeto a Desactivar")]
+    [Tooltip("Arrastra aquí el objeto que quieres desactivar al presionar el botón.")]
+    public GameObject objectToDeactivate;  // Nuevo: Referencia al GameObject a desactivar
+
     // Puedes añadir más propiedades aquí si el botón necesita hacer más cosas
     // Por ejemplo: sonido de interacción, animación, etc.
 
@@ -20,6 +24,12 @@ public class ButtonProperties : MonoBehaviour
             // Cambia el isTrigger del collider referenciado a true
             objectToModifyCollider.isTrigger = true;
             Debug.Log("¡Botón presionado! El collider del objeto referenciado ahora es Trigger.");
+
+            // Desactiva el GameObject si está asignado
+            if (objectToDeactivate != null)
+            {
+                objectToDeactivate.SetActive(false);
+            }
 
             // Aquí podrías añadir más lógica, como reproducir un sonido o animación
             // GetComponent<AudioSource>()?.Play();

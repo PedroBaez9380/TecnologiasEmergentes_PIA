@@ -18,7 +18,10 @@ public class LevelActions : MonoBehaviour
     public float fadeOutTime = 1.0f;             // Tiempo para desvanecer el texto
     public string ipAssignableTag = "PC4";
     public ButtonActionType buttonType;
-    
+
+    [Header("Objeto a Desactivar")]
+    public GameObject objectToDeactivate;
+
 
     [Header("Referencias a Objetos")]
     public List<TableProperties> tables;
@@ -30,6 +33,8 @@ public class LevelActions : MonoBehaviour
     private bool canInteract = false;
     private GameObject player; // Referencia al jugador
     private bool isValid;
+
+
 
     void Start()
     {
@@ -53,6 +58,8 @@ public class LevelActions : MonoBehaviour
         if (unlockableObject != null)
         {
             unlockableCollider = unlockableObject.GetComponent<Collider>();
+
+
             if (unlockableCollider != null)
             {
                 unlockableCollider.isTrigger = false; // Asegurar que no sea trigger al inicio
@@ -165,6 +172,8 @@ public class LevelActions : MonoBehaviour
         // 4. Limpiar PlayerPrefs
         PlayerPrefs.DeleteAll();
         Debug.Log("PlayerPrefs limpiado.");
+        
+        ResetTableOccupiedStatus();
 
         ShowAlert("Nivel Limpiado", alertDuration);
         StartCoroutine(FadeOutText());
@@ -456,6 +465,7 @@ public class LevelActions : MonoBehaviour
         if (unlockableCollider != null)
         {
             unlockableCollider.isTrigger = true;
+            objectToDeactivate.SetActive(false);
         }
     }
 
@@ -463,5 +473,18 @@ public class LevelActions : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         HideInteractionPrompt();
+    }
+
+    void ResetTableOccupiedStatus()
+    {
+        GameObject[] tableObjects = GameObject.FindGameObjectsWithTag("Table");
+        foreach (GameObject tableObject in tableObjects)
+        {
+            TableProperties tableProperties = tableObject.GetComponent<TableProperties>();
+            if (tableProperties != null)
+            {
+                tableProperties.isOccupied = false;
+            }
+        }
     }
 }

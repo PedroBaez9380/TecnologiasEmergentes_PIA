@@ -7,15 +7,20 @@ using UnityEngine.UI;
 public class IPAsignationLVL5 : MonoBehaviour
 {
     [Header("Referencias")]
-    public GameObject ipMenuPrefab; // Cambiado a prefab del menú de IP
+    public GameObject ipMenuPrefab;
     public GameObject player;
     private TMP_InputField ipInput;
     private TMP_InputField subnetMaskInput;
     private TMP_Text warningText;
 
+
+    [Header("Configuración de IP por Defecto")]
+    public string defaultIPAddress = "192.168.1.100"; // IP por defecto (puedes cambiarla en el Inspector)
+    public string defaultSubnetMask = "255.255.255.0"; // Máscara por defecto (puedes cambiarla en el Inspector)
+
     private CharacterController playerController;
     private PlayerController playerScript;
-    private GameObject currentIpMenuInstance; // Instancia actual del menú
+    private GameObject currentIpMenuInstance;
 
     private string assignedIPAddress = "";
     private string assignedSubnetMask = "";
@@ -24,10 +29,14 @@ public class IPAsignationLVL5 : MonoBehaviour
     private string maskKey;
     private bool isMenuOpen = false;
 
+    void Awake() // Usamos Awake para asegurarnos de que se ejecute antes de Start
+    {
+        // Limpiar y establecer las IPs por defecto al inicio
+        ClearAndSetDefaultIPs();
+    }
+
     void Start()
     {
-        
-
         if (player == null)
         {
             Debug.LogError("El objeto del jugador no está asignado en IPAsignation.");
@@ -44,6 +53,24 @@ public class IPAsignationLVL5 : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        // Configurar PlayerPrefs keys
+        ipKey = $"IP_{gameObject.name}";
+        maskKey = $"Mask_{gameObject.name}";
+
+        LoadIPConfiguration(); // Cargar la configuración al inicio
+    }
+
+    private void ClearAndSetDefaultIPs()
+    {
+        // Borrar cualquier IP asignada previamente
+        PlayerPrefs.DeleteKey(ipKey);
+        PlayerPrefs.DeleteKey(maskKey);
+
+        // Establecer las IPs por defecto
+        PlayerPrefs.SetString(ipKey, defaultIPAddress);
+        PlayerPrefs.SetString(maskKey, defaultSubnetMask);
+        PlayerPrefs.Save(); // Guardar inmediatamente
     }
 
     public void OpenIPMenu()
@@ -58,56 +85,34 @@ public class IPAsignationLVL5 : MonoBehaviour
 
         try
         {
-            // Instanciar el menú
             currentIpMenuInstance = Instantiate(ipMenuPrefab, ipMenuPrefab.transform.parent);
             currentIpMenuInstance.SetActive(true);
 
-            // Obtener referencias CON LA RUTA COMPLETA
             ipInput = currentIpMenuInstance.transform.Find("DirIP/IP-Field")?.GetComponent<TMP_InputField>();
             subnetMaskInput = currentIpMenuInstance.transform.Find("Mascara/Mascara-Field")?.GetComponent<TMP_InputField>();
             warningText = currentIpMenuInstance.transform.Find("IP-Validation")?.GetComponent<TMP_Text>();
 
-            // Verificación EXTRA con rutas completas
             if (ipInput == null) Debug.LogError("No se encontró DirIP/IP-Field");
             if (subnetMaskInput == null) Debug.LogError("No se encontró Mascara/Mascara-Field");
             if (warningText == null) Debug.LogError("No se encontró IP-Validation");
 
-            // Configurar botones (estos sí son hijos directos según tu estructura)
             Button saveButton = currentIpMenuInstance.transform.Find("ButtonSave")?.GetComponent<Button>();
             Button exitButton = currentIpMenuInstance.transform.Find("BotonSalir")?.GetComponent<Button>();
-            
 
-            Debug.Log("El valor de saveButton es:" + saveButton);
             if (saveButton != null)
             {
-                // 1. Limpieza completa previa (como ya tienes)
                 ForceClearButtonListeners(saveButton);
-
-                // 2. Asignación del nuevo listener
                 saveButton.onClick.AddListener(() =>
                 {
-                    Debug.Log("Nuevo listener ejecutado en: " + gameObject.name);
-
-                    if (ipInput == null || subnetMaskInput == null)
-                    {
-                        Debug.LogError("Componentes de entrada no encontrados");
-                        return;
-                    }
-
                     AssignIPAddress(gameObject);
                 });
 
-                // 3. Opcional: Asignación persistente para el editor (solo durante el desarrollo)
 #if UNITY_EDITOR
                 UnityEditor.Events.UnityEventTools.AddPersistentListener(
                     saveButton.onClick,
                     new UnityEngine.Events.UnityAction(() => AssignIPAddress(gameObject))
                 );
 #endif
-
-                // 4. Verificación final
-                Debug.Log("=== LISTENER FINAL CONFIGURADO ===");
-                DisplayButtonListeners(saveButton);
             }
             else
             {
@@ -124,11 +129,8 @@ public class IPAsignationLVL5 : MonoBehaviour
                 Debug.LogError("No se encontró BotonSalir");
             }
 
-            // Configurar PlayerPrefs keys
-            ipKey = $"IP_{gameObject.name}";
-            maskKey = $"Mask_{gameObject.name}";
-
-            LoadIPConfiguration();
+            // Cargar la configuración en el menú
+            LoadIPConfigurationIntoMenu(); // Cargar la configuración en el menú
             LockPlayerControls(true);
             isMenuOpen = true;
         }
@@ -140,15 +142,12 @@ public class IPAsignationLVL5 : MonoBehaviour
         }
     }
 
-    // Método para limpieza completa de listeners
     private void ForceClearButtonListeners(Button button)
     {
         if (button == null) return;
 
-        // Limpieza en tiempo de ejecución
         button.onClick = new Button.ButtonClickedEvent();
 
-        // Limpieza de listeners persistentes (editor)
 #if UNITY_EDITOR
         int persistentCount = button.onClick.GetPersistentEventCount();
         for (int i = persistentCount - 1; i >= 0; i--)
@@ -158,39 +157,33 @@ public class IPAsignationLVL5 : MonoBehaviour
 #endif
     }
 
-    // Método para mostrar los listeners (como ya lo tienes)
-    private void DisplayButtonListeners(Button btn)
+    private void LoadIPConfiguration()
     {
-        if (btn == null) return;
-
-        int count = btn.onClick.GetPersistentEventCount();
-        Debug.Log($"El botón '{btn.name}' tiene {count} listeners persistentes");
-
-        for (int i = 0; i < count; i++)
+        // Cargar las IPs asignadas por el usuario (si existen)
+        if (PlayerPrefs.HasKey(ipKey))
         {
-            Debug.Log($"- Listener {i}: " +
-                     $"Objeto: {btn.onClick.GetPersistentTarget(i)} | " +
-                     $"Método: {btn.onClick.GetPersistentMethodName(i)}");
+            assignedIPAddress = PlayerPrefs.GetString(ipKey);
+        }
+        else
+        {
+            assignedIPAddress = defaultIPAddress; // Cargar la IP por defecto
         }
 
-        // Mostrar también listeners dinámicos (no persistentes)
-        //Debug.Log($"Listeners dinámicos: {btn.onClick.GetInvocationList().Length}");
+        if (PlayerPrefs.HasKey(maskKey))
+        {
+            assignedSubnetMask = PlayerPrefs.GetString(maskKey);
+        }
+        else
+        {
+            assignedSubnetMask = defaultSubnetMask; // Cargar la máscara por defecto
+        }
     }
-    //auxiliar, temporal para veriricar listeners de boton guardar interfaz
-    //private void DisplayButtonListeners(Button btn)
-    //{
-    //    if (btn == null) return;
 
-    //    int count = btn.onClick.GetPersistentEventCount();
-    //    Debug.Log($"El botón '{btn.name}' tiene {count} listeners");
-
-    //    for (int i = 0; i < count; i++)
-    //    {
-    //        Debug.Log($"- Listener {i}: " +
-    //                 $"Objeto: {btn.onClick.GetPersistentTarget(i)} | " +
-    //                 $"Método: {btn.onClick.GetPersistentMethodName(i)}");
-    //    }
-    //}
+    private void LoadIPConfigurationIntoMenu()
+    {
+        if (ipInput != null) ipInput.text = assignedIPAddress;
+        if (subnetMaskInput != null) subnetMaskInput.text = assignedSubnetMask;
+    }
 
     public void CloseIPMenu()
     {
@@ -234,11 +227,7 @@ public class IPAsignationLVL5 : MonoBehaviour
             return;
         }
 
-        // Limpiar PlayerPrefs antiguos para este dispositivo
-        PlayerPrefs.DeleteKey(ipKey);
-        PlayerPrefs.DeleteKey(maskKey);
-
-        // Guardar nuevos valores
+        // Guardar los nuevos valores (sobrescribiendo los anteriores)
         assignedIPAddress = ip;
         assignedSubnetMask = mask;
         PlayerPrefs.SetString(ipKey, assignedIPAddress);
@@ -248,21 +237,6 @@ public class IPAsignationLVL5 : MonoBehaviour
         Debug.Log($"Configuración guardada para {targetDevice.name}: IP={assignedIPAddress}, Máscara={assignedSubnetMask}");
 
         CloseIPMenu();
-    }
-
-    private void LoadIPConfiguration()
-    {
-        if (PlayerPrefs.HasKey(ipKey))
-        {
-            assignedIPAddress = PlayerPrefs.GetString(ipKey);
-            if (ipInput != null) ipInput.text = assignedIPAddress;
-        }
-
-        if (PlayerPrefs.HasKey(maskKey))
-        {
-            assignedSubnetMask = PlayerPrefs.GetString(maskKey);
-            if (subnetMaskInput != null) subnetMaskInput.text = assignedSubnetMask;
-        }
     }
 
     public bool IsValidIPAddress(string ip)
@@ -279,7 +253,7 @@ public class IPAsignationLVL5 : MonoBehaviour
         "255.255.255.255", "255.255.255.254", "255.255.255.252",
         "255.255.255.248", "255.255.255.240", "255.255.255.224",
         "255.255.255.192", "255.255.255.128", "255.255.255.0",
-        "255.255.254.0", "255.255.252.0", "255.255.248.0",
+        "255.255.254.0", "255.252.0", "255.248.0",
         "255.255.240.0", "255.255.224.0", "255.255.192.0",
         "255.255.128.0", "255.255.0.0", "255.254.0.0",
         "255.252.0.0", "255.248.0.0", "255.240.0.0",
@@ -336,5 +310,5 @@ public class IPAsignationLVL5 : MonoBehaviour
         Debug.Log($"Configuración de red borrada para {gameObject.name}");
     }
 
-
+    
 }
