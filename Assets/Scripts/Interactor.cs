@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using System;
+using System.IO;
 
 
 public class Interactor : MonoBehaviour
@@ -11,6 +13,7 @@ public class Interactor : MonoBehaviour
     [Header("Configuración de Interacción")]
     public float interactionDistance = 3.0f;
     public LayerMask interactionLayer;
+    public Material cableMaterial;
 
 
     [Header("Elementos UI")]
@@ -35,8 +38,14 @@ public class Interactor : MonoBehaviour
     private IPAsignation ipAsignation;
     private IPAsignationLVL5 ipAsignationLVL5;
 
+    //Para el archivo de logs
+    private string logFilePath;
+    private string logFileName = "my_custom_log.txt";
+
     void Start()
     {
+        logFilePath = Application.persistentDataPath + "/" + logFileName;
+        Debug.Log("Log file path: " + logFilePath); // Para debug en el editor
 
         if (interactionPromptText != null)
         {
@@ -172,17 +181,26 @@ public class Interactor : MonoBehaviour
                     // Seleccionar el segundo dispositivo
                     if (Input.GetKeyDown(KeyCode.E))
                     {
+                        LogToFile("Comienza conexion de cable entre dispositivos.");
                         targetDevice = hitObject;
+                        LogToFile("Selected Device:" + selectedDevice);
+                        LogToFile("Target Device:" + targetDevice);
+
+                        bool canConnectResult = CanConnect(selectedDevice, targetDevice); // Guarda el resultado en una variable
+                        LogToFile("Resultado de CanConnect: " + canConnectResult.ToString());
+
                         if (CanConnect(selectedDevice, targetDevice))
                         {
                             // Conectar los dispositivos
                             CreateCable(GetDeviceCenter(selectedDevice), GetDeviceCenter(targetDevice));
 
                             // Limpiar la selección
+                            LogToFile("Comienza limpiar seleccion.");
                             selectedDevice = null;
                             targetDevice = null;
                             interactionPromptText.gameObject.SetActive(false);
                             selectedDeviceText.gameObject.SetActive(false);
+                            LogToFile("Finaliza limpiar seleccion.");
                         }
                         else
                         {
@@ -364,22 +382,55 @@ public class Interactor : MonoBehaviour
     }
 
     // Interactor.cs
+
     void CreateCable(Vector3 startPoint, Vector3 endPoint)
     {
-        
-        Debug.Log("creando cable");
-        currentCable = new GameObject("Cable");
-        currentCable.tag = "Cable4";
-        LineRenderer lineRenderer = currentCable.AddComponent<LineRenderer>();
-        lineRenderer.positionCount = 2;
-        lineRenderer.SetPosition(0, startPoint);
-        lineRenderer.SetPosition(1, endPoint);
-        lineRenderer.startWidth = 0.05f;
-        lineRenderer.endWidth = 0.05f;
-        lineRenderer.material = new Material(Shader.Find("Standard"));
-        lineRenderer.material.color = Color.red;
-        selectedDeviceText.gameObject.SetActive(false);
-        interactionPromptText.gameObject.SetActive(false);
+        LogToFile("Entrando en CreateCable(). Start: " + startPoint + ", End: " + endPoint);
+        try
+        {
+            LogToFile("Intentando crear cable...");
+            currentCable = new GameObject("Cable");
+            currentCable.tag = "Cable4";
+            LogToFile("GameObject 'Cable' creado.");
+            LineRenderer lineRenderer = currentCable.AddComponent<LineRenderer>();
+            LogToFile("LineRenderer agregado.");
+            lineRenderer.positionCount = 2;
+            LogToFile("positionCount establecido en 2.");
+            lineRenderer.SetPosition(0, startPoint);
+            LogToFile("startPoint establecido.");
+            lineRenderer.SetPosition(1, endPoint);
+            LogToFile("endPoint establecido.");
+            lineRenderer.startWidth = 0.05f;
+            LogToFile("startWidth establecido.");
+            lineRenderer.endWidth = 0.05f;
+            LogToFile("endWidth establecido.");
+
+            // Asigna el material desde la variable pública
+            if (cableMaterial != null)
+            {
+                lineRenderer.material = cableMaterial;
+                LogToFile("Material asignado desde la variable 'cableMaterial'.");
+            }
+            else
+            {
+                LogToFile("¡Advertencia! 'cableMaterial' no está asignado en el Inspector.");
+                // Puedes agregar un material por defecto aquí si lo deseas como respaldo
+                // lineRenderer.material = new Material(Shader.Find("Standard"));
+                // lineRenderer.material.color = Color.red;
+            }
+
+            LogToFile("Color (si se aplicó por defecto) asignado.");
+            LogToFile("Cable creado exitosamente.");
+            selectedDeviceText.gameObject.SetActive(false);
+            interactionPromptText.gameObject.SetActive(false);
+            LogToFile("Se ocultaron los elementos");
+        }
+        catch (Exception e)
+        {
+            LogToFile("Error en CreateCable(): " + e.Message);
+            Debug.LogError("Error en CreateCable(): " + e.Message); // Mantén esto para la consola del editor
+        }
+        LogToFile("Saliendo de CreateCable().");
     }
 
 
@@ -437,6 +488,23 @@ public class Interactor : MonoBehaviour
     public void EnableCable()
     {
         CableLVL5.SetActive(true);
+    }
+
+    //Logs en txt
+    void LogToFile(string message)
+    {
+        try
+        {
+            using (StreamWriter writer = File.AppendText(logFilePath))
+            {
+                string logEntry = "[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "] " + message;
+                writer.WriteLine(logEntry);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error writing to log file: " + e.Message);
+        }
     }
 
 
