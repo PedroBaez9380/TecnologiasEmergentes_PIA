@@ -45,7 +45,7 @@ public class Interactor : MonoBehaviour
     void Start()
     {
         logFilePath = Application.persistentDataPath + "/" + logFileName;
-        Debug.Log("Log file path: " + logFilePath); // Para debug en el editor
+        //Debug.Log("Log file path: " + logFilePath);
 
         if (interactionPromptText != null)
         {
@@ -77,8 +77,7 @@ public class Interactor : MonoBehaviour
             // Verifica si golpeó una mesa
             if (hit.collider.CompareTag("Table"))
             {
-                isLookingAtTable = true;  // Establece que estamos mirando una mesa
-                //Debug.Log("Detecto la mesa");
+                isLookingAtTable = true;  
                 selectedTable = hit.collider.transform;
                 TableProperties tableProperties = selectedTable.GetComponent<TableProperties>();
 
@@ -239,7 +238,6 @@ public class Interactor : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.F)) //&& !ipAsignation.IsMenuOpen()
                 {
-                    Debug.Log("Si detecta la F");
                     interactionPromptTextExtraLVL5.gameObject.SetActive(false);
                     ipAsignationLVL5.InteractWithIPAssignable();
                 }
@@ -302,19 +300,19 @@ public class Interactor : MonoBehaviour
                 // Si no hay nada sobre lo que interactuar, desactiva el texto de interacción
                 if (interactionPromptText != null && interactionPromptText.gameObject.activeSelf)
                 {
-                    Debug.Log("Ocultando Texto Principal");
+                    //Debug.Log("Ocultando Texto Principal");
                     interactionPromptText.gameObject.SetActive(false);
                 }
 
                 if (interactionPromptTextExtra != null && interactionPromptTextExtra.gameObject.activeSelf)
                 {
-                    Debug.Log("Ocultando Texto Extra");
+                    //Debug.Log("Ocultando Texto Extra");
                     interactionPromptTextExtra.gameObject.SetActive(false);
                 }
 
                 if (interactionPromptTextExtraLVL5 != null && interactionPromptTextExtraLVL5.gameObject.activeSelf)
                 {
-                    Debug.Log("Ocultando Texto Extra LVL5");
+                    //Debug.Log("Ocultando Texto Extra LVL5");
                     interactionPromptTextExtraLVL5.gameObject.SetActive(false);
                 }
             }
@@ -385,52 +383,40 @@ public class Interactor : MonoBehaviour
 
     void CreateCable(Vector3 startPoint, Vector3 endPoint)
     {
-        LogToFile("Entrando en CreateCable(). Start: " + startPoint + ", End: " + endPoint);
         try
         {
-            LogToFile("Intentando crear cable...");
             currentCable = new GameObject("Cable");
             currentCable.tag = "Cable4";
-            LogToFile("GameObject 'Cable' creado.");
-            LineRenderer lineRenderer = currentCable.AddComponent<LineRenderer>();
-            LogToFile("LineRenderer agregado.");
-            lineRenderer.positionCount = 2;
-            LogToFile("positionCount establecido en 2.");
-            lineRenderer.SetPosition(0, startPoint);
-            LogToFile("startPoint establecido.");
-            lineRenderer.SetPosition(1, endPoint);
-            LogToFile("endPoint establecido.");
-            lineRenderer.startWidth = 0.05f;
-            LogToFile("startWidth establecido.");
-            lineRenderer.endWidth = 0.05f;
-            LogToFile("endWidth establecido.");
 
-            // Asigna el material desde la variable pública
+            LineRenderer lineRenderer = currentCable.AddComponent<LineRenderer>();
+            lineRenderer.positionCount = 2;
+            lineRenderer.SetPosition(0, startPoint);
+            lineRenderer.SetPosition(1, endPoint);
+            lineRenderer.startWidth = 0.05f;
+            lineRenderer.endWidth = 0.05f;
+
             if (cableMaterial != null)
             {
                 lineRenderer.material = cableMaterial;
-                LogToFile("Material asignado desde la variable 'cableMaterial'.");
             }
             else
             {
-                LogToFile("¡Advertencia! 'cableMaterial' no está asignado en el Inspector.");
-                // Puedes agregar un material por defecto aquí si lo deseas como respaldo
-                // lineRenderer.material = new Material(Shader.Find("Standard"));
-                // lineRenderer.material.color = Color.red;
+                Debug.LogWarning("¡Advertencia! 'cableMaterial' no está asignado en el Inspector.");
             }
 
-            LogToFile("Color (si se aplicó por defecto) asignado.");
-            LogToFile("Cable creado exitosamente.");
             selectedDeviceText.gameObject.SetActive(false);
             interactionPromptText.gameObject.SetActive(false);
-            LogToFile("Se ocultaron los elementos");
         }
         catch (Exception e)
         {
-            LogToFile("Error en CreateCable(): " + e.Message);
-            Debug.LogError("Error en CreateCable(): " + e.Message); // Mantén esto para la consola del editor
+            LogError("Error en CreateCable(): " + e.Message);
         }
-        LogToFile("Saliendo de CreateCable().");
+    }
+
+    void LogError(string message)
+    {
+        LogToFile(message);
+        Debug.LogError(message);
     }
 
 
