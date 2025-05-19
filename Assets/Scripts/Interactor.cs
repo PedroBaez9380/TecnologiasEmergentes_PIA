@@ -182,6 +182,7 @@ public class Interactor : MonoBehaviour
                             selectedDevice = null;
                             targetDevice = null;
                             interactionPromptText.gameObject.SetActive(false);
+                            selectedDeviceText.gameObject.SetActive(false);
                         }
                         else
                         {
