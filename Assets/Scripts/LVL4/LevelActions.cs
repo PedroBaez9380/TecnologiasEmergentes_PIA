@@ -213,7 +213,7 @@ public class LevelActions : MonoBehaviour
         // 4. Si todo es válido, desbloquear
         if (isValid)
         {
-            ShowAlert("Nivel 4 Completado! Nivel 5 Desbloqueado.", alertDuration);
+            ShowAlert("Nivel 3 Completado! Nivel 4 Desbloqueado.", alertDuration);
             EnableUnlockable();
         }
         StartCoroutine(FadeOutText());
