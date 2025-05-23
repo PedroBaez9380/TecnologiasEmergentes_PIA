@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 382}
   m_MaxSize: {x: 10000, y: 10000}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 121
+  controlID: 113
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 122
+  controlID: 114
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 40
+  controlID: 50
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 41
+  controlID: 51
   draggingID: 0
 --- !u!114 &9
 MonoBehaviour:
@@ -348,7 +348,7 @@ MonoBehaviour:
     m_CachedPref: 1
     m_ControlHash: 1412526313
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 797594
+  m_LastInspectedObjectInstanceID: 26210
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
@@ -499,7 +499,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 12b6fdff2ab6fdff36b9fdfff4cdfdff0ccefdffe8d0fdff9203feffaa03feffb606feff522bfeff6a2bfeff462efeff1238feff2a38feff3e3bfeff4874feffae92feffc692feffd695feff8298feff6c9cfeff32d5040022de040078e3040082f504007af604003afb0400c4400600b24e08009a4f080004500800be500800b6510800165308006c530800725308004c5408006c54080006570800665d0800fc5e0800a070080006710800fe710800be760800de820800a6930800849d080028650a00c0670a0068690a00de690a00346a0a009a6a0a00b26a0a009a6d0a00ce6d0a004cb40a009a2b0c00
+      m_ExpandedIDs: 06ecffff1eecffff32efffff1efbffffa4bc0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1159,8 +1159,8 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: f0520100
-    m_LastClickedID: 86768
+    m_SelectedIDs: 381c0100
+    m_LastClickedID: 72760
     m_ExpandedIDs: 000000009e1a0100
     m_RenameOverlay:
       m_UserAcceptedRename: 0

@@ -174,7 +174,7 @@ public class LockerInteraction_lvl4 : MonoBehaviour
         {
             // Muestra el mensaje de colocación
             // Muestra el mensaje de colocación
-            selectedDeviceText.text = "Colocando " + currentDevice.name + "..." + "Presiona Z para cancelar";
+            selectedDeviceText.text = "Colocando " + "dispositivo." + " Presiona Z para cancelar"; //+currentDevice.name
             selectedDeviceText.gameObject.SetActive(true);
 
             // Notifica al Interactor para activar el modo de colocación

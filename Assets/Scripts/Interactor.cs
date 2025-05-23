@@ -86,21 +86,21 @@ public class Interactor : MonoBehaviour
                     // Si la mesa está ocupada, muestra el mensaje para eliminar el dispositivo
                     if (tableProperties.IsOccupied())
                     {
-                        if (interactionPromptText != null && !interactionPromptText.gameObject.activeSelf)
-                        {
-                            interactionPromptText.text = "<color=red>Presiona E para eliminar el dispositivo</color>";
-                            interactionPromptText.gameObject.SetActive(true);
+                        //if (interactionPromptText != null && !interactionPromptText.gameObject.activeSelf)
+                        //{
+                        //    interactionPromptText.text = "<color=red>Presiona E para eliminar el dispositivo</color>";
+                        //    interactionPromptText.gameObject.SetActive(true);
 
-                            // Cambia el material solo cuando el texto de interacción está activo
-                            tableProperties.Highlight(true);  // Activar el material de eliminación
-                        }
+                        //    // Cambia el material solo cuando el texto de interacción está activo
+                        //    tableProperties.Highlight(true);  // Activar el material de eliminación
+                        //}
 
-                        // Si se presiona E, elimina el dispositivo de la mesa
-                        if (Input.GetKeyDown(KeyCode.E))
-                        {
-                            tableProperties.RemoveDevice();
-                            RefreshPrompt();
-                        }
+                        //// Si se presiona E, elimina el dispositivo de la mesa
+                        //if (Input.GetKeyDown(KeyCode.E))
+                        //{
+                        //    tableProperties.RemoveDevice();
+                        //    RefreshPrompt();
+                        //}
                     }
                     else
                     {
